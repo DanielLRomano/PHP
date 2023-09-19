@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Consumo de Combustível</title>
+</head>
+<body>
+    <h1>Calculadora de Consumo de Combustível</h1>
+    
+    <form method="POST" action="calculadora.php">
+        <label for="quilometragem">Quilometragem percorrida (km):</label>
+        <input type="text" name="quilometragem" id="quilometragem" required>
+        <br>
+        <label for="consumo">Consumo de combustível (litros):</label>
+        <input type="text" name="consumo" id="consumo" required>
+        <br>
+        <label for="preco_litro">Preço do litro de combustível (R$):</label>
+        <input type="text" name="preco_litro" id="preco_litro" required>
+        <br>
+        <input type="submit" value="Calcular">
+    </form>
+</body>
+</html>
