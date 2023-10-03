@@ -1,56 +1,44 @@
 <?php
-
 $host = "localhost";
 $username = "root";
 $password = "";
-$db = "test";
+$db = "aula16";
+
+// Obter o valor do parâmetro PicNum da solicitação GET
 $PicNum = $_GET["PicNum"];
 
-// Use a função mysqli_connect para criar uma conexão
+// Conectar ao banco de dados usando mysqli
 $conn = mysqli_connect($host, $username, $password, $db);
 
-// Verifique se a conexão foi bem-sucedida
+// Verificar a conexão
 if (!$conn) {
-    die("Impossível conectar ao banco de dados: " . mysqli_connect_error());
+    die("Impossível conectar ao banco: " . mysqli_connect_error());
 }
 
-// Use mysqli_select_db para selecionar o banco de dados
-if (!mysqli_select_db($conn, $db)) {
-    die("Impossível selecionar o banco de dados: " . mysqli_error($conn));
+// Escapar o valor do parâmetro para evitar injeção de SQL
+$PicNum = mysqli_real_escape_string($conn, $PicNum);
+
+// Executar a consulta com o parâmetro escapado
+$query = "SELECT * FROM PESSOA WHERE PES_ID='$PicNum'";
+$result = mysqli_query($conn, $query);
+
+if (!$result) {
+    die("Impossível executar a query: " . mysqli_error($conn));
 }
 
-// Execute a consulta SQL usando mysqli_query com uma consulta preparada
-$query = "SELECT PES_IMG FROM PESSOA WHERE PES_ID=?";
-$stmt = mysqli_prepare($conn, $query);
+// Verificar se foi encontrado um registro
+if (mysqli_num_rows($result) > 0) {
+    // Definir o cabeçalho para indicar que a saída é uma imagem GIF
+    header("Content-type: image/gif");
 
-if (!$stmt) {
-    die("Impossível preparar a consulta: " . mysqli_error($conn));
-}
-
-// Associe o parâmetro PicNum à consulta preparada
-mysqli_stmt_bind_param($stmt, "i", $PicNum);
-
-// Execute a consulta
-if (mysqli_stmt_execute($stmt)) {
-    // Associe o resultado a uma variável
-    mysqli_stmt_bind_result($stmt, $PES_IMG);
-
-    // Busque o resultado
-    if (mysqli_stmt_fetch($stmt)) {
-        // Defina o tipo de conteúdo para imagem
-        header("Content-type: image/gif");
-
-        // Imprima a imagem
-        echo $PES_IMG;
-    } else {
-        echo "Imagem não encontrada.";
-    }
+    // Ler e exibir a imagem armazenada no banco de dados
+    $row = mysqli_fetch_object($result);
+    echo $row->PES_IMG;
 } else {
-    echo "Impossível executar a consulta: " . mysqli_error($conn);
+    // Se nenhum registro for encontrado, você pode exibir uma imagem de erro ou retornar uma mensagem de erro.
+    echo "Imagem não encontrada.";
 }
 
-// Feche a consulta preparada e a conexão com o banco de dados
-mysqli_stmt_close($stmt);
+// Fechar a conexão
 mysqli_close($conn);
-
 ?>

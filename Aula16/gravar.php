@@ -1,59 +1,33 @@
 <?php
 
-// Verifique se foi enviado um arquivo de imagem
-if (isset($_FILES["imagem"])) {
-    $imagem = $_FILES["imagem"];
+$imagem = $_FILES["imagem"];
+$host = "localhost";
+$username = "root";
+$password = "";
+$db = "aula16";
 
-    // Verifique se não ocorreu um erro no upload
-    if ($imagem["error"] == UPLOAD_ERR_OK) {
-        // Nomeie a imagem com base no timestamp
-        $nomeFinal = time() . '.jpg';
-        
-        // Mova a imagem para o destino desejado
-        if (move_uploaded_file($imagem['tmp_name'], $nomeFinal)) {
-            // Abra o arquivo e obtenha o tamanho
-            $tamanhoImg = filesize($nomeFinal);
-
-            // Abra a conexão com o banco de dados
-            $host = "localhost";
-            $username = "root";
-            $password = "";
-            $db = "test";
-            $conn = new mysqli($host, $username, $password, $db);
-
-            // Verifique a conexão com o banco de dados
-            if ($conn->connect_error) {
-                die("Impossível conectar ao banco de dados: " . $conn->connect_error);
-            }
-
-            // Prepare a consulta SQL para inserir a imagem
-            $stmt = $conn->prepare("INSERT INTO PESSOA (PES_IMG) VALUES (?)");
-
-            // Associe os parâmetros
-            $stmt->bind_param("b", $mysqlImg);
-
-            // Leitura do conteúdo da imagem
-            $mysqlImg = file_get_contents($nomeFinal);
-
-            // Execute a consulta
-            if ($stmt->execute()) {
-                // Exclua o arquivo temporário
-                unlink($nomeFinal);
-
-                // Redirecione para a página de exibição
-                header("location: exibir.php");
-            } else {
-                echo "Erro ao executar a consulta: " . $stmt->error;
-            }
-
-            // Feche a conexão com o banco de dados
-            $stmt->close();
-            $conn->close();
-        } else {
-            echo "Falha ao mover o arquivo para o destino desejado.";
+if ($imagem != null && $imagem['error'] == 0) { // Verifica se um arquivo foi enviado e se não houve erros no upload
+    $nomeFinal = time() . '.jpg';
+    if (move_uploaded_file($imagem['tmp_name'], $nomeFinal)) { // Move o arquivo temporário para o destino final
+        $conexao = mysqli_connect($host, $username, $password, $db); // Usando mysqli ao invés de mysql (obsoleto)
+        if (!$conexao) {
+            die("Impossível Conectar: " . mysqli_connect_error());
         }
+
+        $tamanhoImg = filesize($nomeFinal);
+        $mysqlImg = addslashes(file_get_contents($nomeFinal)); // Lê o arquivo em binário
+
+        $query = "INSERT INTO PESSOA (PES_IMG) VALUES ('$mysqlImg')";
+        if (mysqli_query($conexao, $query)) {
+            unlink($nomeFinal); // Remove o arquivo temporário após o upload
+            header("location: exibir.php");
+        } else {
+            echo "O sistema não foi capaz de executar a query: " . mysqli_error($conexao);
+        }
+
+        mysqli_close($conexao); // Fecha a conexão com o banco de dados
     } else {
-        echo "Ocorreu um erro no upload da imagem.";
+        echo "Falha ao mover o arquivo para o destino final.";
     }
 } else {
     echo "Você não realizou o upload de forma satisfatória.";

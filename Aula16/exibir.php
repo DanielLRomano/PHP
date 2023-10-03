@@ -1,37 +1,44 @@
 <?php
-
 $host = "localhost";
 $username = "root";
 $password = "";
-$db = "test";
+$db = "aula16";
 
-// Use a função mysqli_connect para criar uma conexão
+// Exibe um título na página
+echo "<h1>Imagens: Banco de dados_Aula 16</h1>";
+
+// Conectar ao banco de dados usando mysqli
 $conn = mysqli_connect($host, $username, $password, $db);
+// Estabelece uma conexão com o banco de dados usando as credenciais fornecidas.
 
-// Verifique se a conexão foi bem-sucedida
+// Verificar a conexão
 if (!$conn) {
-    die("Impossível conectar ao banco de dados: " . mysqli_connect_error());
+    die("Impossível conectar ao banco: " . mysqli_connect_error());
 }
+// Verifica se a conexão foi bem-sucedida. Se não, encerra o script e exibe uma mensagem de erro.
 
-// Use mysqli_select_db para selecionar o banco de dados
-if (!mysqli_select_db($conn, $db)) {
-    die("Impossível selecionar o banco de dados: " . mysqli_error($conn));
-}
-
-// Execute a consulta SQL usando mysqli_query
+// Executar a consulta
 $query = "SELECT * FROM PESSOA";
 $result = mysqli_query($conn, $query);
+// Executa uma consulta SQL para obter todas as entradas da tabela "PESSOA".
 
 if (!$result) {
     die("Impossível executar a query: " . mysqli_error($conn));
 }
+// Verifica se a consulta foi bem-sucedida. Se não, encerra o script e exibe uma mensagem de erro.
 
+// Exibir as imagens
 while ($row = mysqli_fetch_object($result)) {
-    // Use uma tag <img> para exibir a imagem
-    echo "<img src='getImagem.php?PicNum=$row->PES_ID' alt='Imagem do Usuário'>";
+    // Loop que percorre os resultados da consulta.
+    echo "<hr>";
+    echo "<img src='getImagem.php?PicNum={$row->PES_ID}' style='height: 100px; margin: 10px;'>";
+    // Exibe uma imagem e inclui um link para "getImagem.php" passando o ID da imagem como parâmetro.
 }
 
-// Feche a conexão com o banco de dados
+// Fechar a conexão
 mysqli_close($conn);
+// Fecha a conexão com o banco de dados.
 
+echo "<br><br> <a href='index.php'> << voltar </a>";
+// Exibe um link para voltar à página inicial.
 ?>
