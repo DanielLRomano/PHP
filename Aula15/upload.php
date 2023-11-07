@@ -15,18 +15,15 @@ if (isset($_POST['enviar-formulario'])) {
             $temporario = $_FILES['arquivo']['tmp_name'][$cont];
             $novoNome = uniqid() . ".$extensao";
 
-            if (move_uploaded_file($temporario, $pasta . $novoNome)) {
-                echo "Upload feito com sucesso. <br>";
+            if (move_uploaded_file($temporario, $pasta.$novoNome)) {
+                echo "Upload feito com sucesso <br>";
             } else {
                 echo "Erro, não foi possivel fazer o upload. <br>";
             }
         } else {
-            //echo "Não existe";
+            // echo "Não existe";
             echo "Formato invalido: " . $extensao . "<br>";
         }
-
         $cont++;
     }
 }
-
-?>
