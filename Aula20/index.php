@@ -4,7 +4,7 @@ session_start();
 
 <!DOCTYPE html>
 <html>
-    
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,12 +23,12 @@ session_start();
                     <h3 class="title has-text-grey">Sistema de Login</h3>
                     <h3 class="title has-text-grey">Pet Shop</a></h3>
                     <?php
-                    if(isset($_SESSION['nao_autenticado'])):
-                    ?>
-                    <div class="notification is-danger">
-                      <p>ERRO: Usuário ou senha inválidos.</p>
-                    </div>
-                    <?php
+                    if (isset($_SESSION['nao_autenticado'])):
+                        ?>
+                        <div class="notification is-danger">
+                            <p>ERRO: Usuário ou senha inválidos.</p>
+                        </div>
+                        <?php
                     endif;
                     unset($_SESSION['nao_autenticado']);
                     ?>
@@ -36,7 +36,8 @@ session_start();
                         <form action="login.php" method="POST">
                             <div class="field">
                                 <div class="control">
-                                    <input name="usuario" name="text" class="input is-large" placeholder="Seu usuário" autofocus="">
+                                    <input name="usuario" name="text" class="input is-large" placeholder="Seu usuário"
+                                        autofocus="">
                                 </div>
                             </div>
 
