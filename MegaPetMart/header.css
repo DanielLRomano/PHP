@@ -1,0 +1,292 @@
+/* Estilos Gerais */
+
+/* Remove margens e preenchimentos padrão e oculta a rolagem horizontal */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Estilos para a parte superior (cabeçalho) */
+
+.cima {
+    background-color: #2A8A5C;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* Imagens */
+
+/* Ajusta a largura da primeira imagem para 100% e a altura para 6rem */
+.foto1 {
+    width: 100%;
+    height: 6rem;
+}
+
+/* Ajusta a largura da segunda imagem para 100px */
+.foto2 {
+    width: 100px;
+}
+
+/* Caixa de Entrada de Pesquisa */
+
+/* Ajusta a exibição da caixa de entrada de pesquisa usando flexbox */
+.inputBox_container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    max-width: 25em;
+    width: fit-content;
+    height: fit-content;
+    background-color: white;
+    border-radius: 0.8em;
+    overflow: hidden;
+}
+
+/* Ícone de Pesquisa */
+
+/* Ajusta a altura e o preenchimento do ícone de pesquisa */
+.search_icon {
+    height: 1em;
+    padding: 0 0.5em 0 0.8em;
+    fill: #abb2bf;
+}
+
+/* Caixa de Entrada de Texto */
+
+/* Ajusta os estilos da caixa de entrada de texto */
+.inputBox {
+    background-color: transparent;
+    color: black;
+    outline: none;
+    width: 100%;
+    border: 0;
+    padding: 0.5em 1.5em 0.5em 0;
+    font-size: 1em;
+}
+
+/* Estilos do Placeholder */
+
+/* Define a cor do placeholder */
+::placeholder {
+    color: #abb2bf;
+}
+
+/* Seção de Pedidos */
+
+/* Ajusta a exibição e alinhamento da seção de pedidos */
+.pedidos {
+    display: flex;
+    align-items: center;
+}
+
+/* Botão do Carrinho */
+
+/* Ajusta os estilos do botão do carrinho, incluindo a animação do hover */
+.btn-cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    position: relative;
+}
+
+/* Estilos do Número de Itens no Carrinho */
+
+/* Define os estilos para o número de itens no carrinho */
+.btn-cart::after {
+    content: attr(data-quantity);
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    font-size: 15px;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    opacity: 0;
+    visibility: hidden;
+    transition: .2s linear;
+    top: 115%;
+}
+
+/* Estilos do Ícone do Carrinho */
+
+/* Ajusta a largura e altura do ícone do carrinho */
+.icon-cart {
+    width: 24.38px;
+    height: 30.52px;
+    transition: .2s linear;
+}
+
+/* Estilos do Caminho do Ícone do Carrinho */
+
+/* Define a cor do caminho do ícone do carrinho */
+.icon-cart path {
+    fill: black;
+    transition: .2s linear;
+}
+
+/* Animação do Hover do Botão do Carrinho */
+
+/* Ajusta a escala do ícone do carrinho e a cor do caminho no hover */
+.btn-cart:hover > .icon-cart {
+    transform: scale(1.2);
+}
+
+.btn-cart:hover > .icon-cart path {
+    fill: black;
+}
+
+/* Exibição do Número de Itens no Hover */
+
+/* Ajusta a visibilidade e opacidade do número de itens no hover */
+.btn-cart:hover::after {
+    visibility: visible;
+    opacity: 1;
+    top: 105%;
+}
+
+/* Estilos para a Quantidade */
+
+/* Ajusta os estilos para a exibição da quantidade */
+.quantity {
+    display: none;
+}
+
+/* Botão de Entrar ou Cadastrar */
+
+/* Ajusta os estilos do botão de entrar ou cadastrar, incluindo a animação do hover */
+.entrar_cadastro {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: black;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+    width: 130px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+/* Estilos do Span no Botão de Entrar ou Cadastrar */
+
+/* Ajusta os estilos do span no botão de entrar ou cadastrar, incluindo a animação do hover */
+.entrar_cadastro span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+/* Estilos do Pseudo-Elemento ::after no Botão de Entrar ou Cadastrar */
+
+/* Ajusta os estilos do pseudo-elemento ::after no botão de entrar ou cadastrar, incluindo a animação do hover */
+.entrar_cadastro span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;
+    transition: 0.5s;
+}
+
+/* Animação do Hover para o Botão de Entrar ou Cadastrar */
+
+/* Ajusta os estilos no hover para o botão de entrar ou cadastrar */
+.entrar_cadastro:hover span {
+    padding-right: 15px;
+}
+
+.entrar_cadastro:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+/* Botão de Logout */
+
+/* Ajusta a exibição e alinhamento do botão de logout */
+#logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Barra de Navegação */
+
+/* Ajusta os estilos para a barra de navegação, incluindo tamanho da fonte e sombra */
+.navBar {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    font-size: 25px;
+    box-shadow: rgba(0, 0, 0, 1) 0px 5px 15px;
+    display: flex;
+    justify-content: space-around;
+    text-decoration: none;
+}
+
+/* Links */
+
+/* Ajusta os estilos para links, incluindo remoção de decoração e cor do texto */
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Responsividade Geral */
+
+/* Ajusta alguns estilos para telas menores que 768px */
+
+@media only screen and (max-width: 768px) {
+    .foto1 {
+        height: 4rem; /* Ou qualquer valor desejado para dispositivos móveis */
+    }
+
+    .inputBox_container {
+        max-width: 10em;
+    }
+
+    .search_icon {
+        padding: 0 0.3em 0 0.5em;
+    }
+
+    .inputBox {
+        font-size: 0.8em;
+    }
+
+    .btn-cart {
+        width: 40px;
+        height: 40px;
+    }
+
+    .icon-cart {
+        width: 20.38px;
+        height: 26.52px;
+    }
+
+    .icon-cart path {
+        fill: black;
+    }
+
+    .quantity {
+        font-size: 12px;
+        display: inline-block;
+    }
+
+    .navBar {
+        font-size: 18px;
+    }
+
+    .entrar_cadastro {
+        font-size: 14px;
+        padding: 8px;
+        width: 100px;
+    }
+}

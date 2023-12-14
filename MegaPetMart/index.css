@@ -1,0 +1,127 @@
+/* <!-- Estilo para Responsividade e Layout Geral -->
+
+<!-- Zera as margens e preenchimentos padrão e esconde a barra de rolagem horizontal --> */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Estilo para a Seção Inferior com Fundo Verde Escuro e Texto Branco */
+.baixo {
+    background-color: #2A8A5C;
+    display: flex;
+}
+
+/* Estilo para Textos Informativos na Seção Inferior */
+.texto-info {
+    color: white;
+    font-size: 13px;
+}
+
+/* Estilo para a Barra de Navegação */
+.navBar {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    font-size: 25px;
+    box-shadow: rgba(0, 0, 0, 1) 0px 5px 15px;
+    display: flex;
+    justify-content: space-around;
+    text-decoration: none;
+}
+
+/* Estilo para o Contêiner do Carrossel */
+.carousel {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    height: 400px;
+}
+
+/* Estilo para o Contêiner Interno do Carrossel */
+.carousel-inner {
+    display: flex;
+    width: 100%;
+    height: 380px;
+}
+
+/* Estilo para Destaques no Conteúdo */
+.destaque {
+    display: flex;
+    justify-content: center;
+}
+
+/* Estilo para Linhas Flexíveis com Espaçamento Uniforme */
+.row {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Estilo para Imagens do Carrossel e Cartões */
+.imagem1,
+.imagem2,
+.imagem3,
+.imagem4 {
+    width: 100%;
+    height: 80vh;
+}
+
+/* Estilo para Cartões com Espaçamento Entre Elementos */
+.card {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Estilo para Títulos de Cartões com Fonte Poppins, Negrito e Cor Preta */
+.card-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: black;
+}
+
+/* Estilo para Textos de Cartões com Fonte Poppins e Cor Preta */
+.card-text {
+    font-family: 'Poppins', sans-serif;
+    color: black;
+}
+
+/* Estilo para Links sem Decoração e Cor Preta */
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Estilo para Responsividade em Dispositivos com Largura Máxima de 768px */
+@media only screen and (max-width: 768px) {
+    /* Ajusta a altura do carrossel e imagens para dispositivos móveis */
+    .carousel,
+    .imagem1,
+    .imagem2,
+    .imagem3,
+    .imagem4 {
+        height: 200px;
+    }
+
+    /* Reduz o tamanho da fonte na barra de navegação para dispositivos móveis */
+    .navBar {
+        font-size: 18px;
+    }
+
+    /* Reduz o tamanho do título nos destaques para dispositivos móveis */
+    .destaque h1 {
+        font-size: 24px;
+    }
+
+    /* Ajusta a direção dos cartões para exibição vertical em dispositivos móveis */
+    .card {
+        flex-direction: column;
+    }
+
+    /* Centraliza o texto nos cartões para dispositivos móveis */
+    .card-title,
+    .card-text {
+        text-align: center;
+    }
+}

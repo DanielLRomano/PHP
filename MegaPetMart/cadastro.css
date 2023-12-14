@@ -1,0 +1,41 @@
+/* Define a cor de fundo para o corpo da página com transparência */
+body {
+    background-color: rgba(20, 181, 55, 0.2);
+}
+
+/* Estilo para um contêiner que precisa de validação */
+.needs-validation1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: black;
+    margin: 2%;
+}
+
+/* Estilo para o título h1 dentro do contêiner de validação */
+.needs-validation1 h1 {
+    margin: 2%;
+}
+
+/* Estilo para um elemento de seleção de formulário */
+.form-select {
+    width: 11rem;
+    /* Ajuste conforme necessário */
+}
+
+/* Estilo para o grupo de formulário */
+.form-group {
+    margin-top: -2rem;
+}
+
+/* Estilo para o botão de cadastro */
+#btnCadastro {
+    background-color: #2A8A5C;
+    border-color: black;
+}
+
+/* Estilo para o botão de cadastro quando hover */
+#btnCadastro:hover {
+    background-color: #15b065;
+}
